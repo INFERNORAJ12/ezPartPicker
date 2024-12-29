@@ -25,7 +25,6 @@
                 messageElement.innerText = 'Amount exceeds the maximum limit';
             }
         }
-
         function changeCurrency(currency) {
             currentCurrency = currency;
             const sliderValue = document.getElementById('budgetSlider').value;
@@ -49,6 +48,12 @@
                 customAmountInput.min = (25000 * exchangeRates['€']).toFixed(2);
                 customAmountInput.max = 5500.00;
             }
-
             updateValue(sliderValue);
         }
+        
+        module.exports = {
+            currentCurrency,
+            exchangeRates,
+            getConvertedValue: () => convertedValue,
+        };
+        
