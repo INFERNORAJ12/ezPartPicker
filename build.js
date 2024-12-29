@@ -1,5 +1,6 @@
 
         let currentCurrency = 'Rs';
+
         const exchangeRates = {
             Rs: 1,
             $: 0.012,
@@ -9,7 +10,7 @@
         e_max = 5500.00 ;
         d_max = 6000.00 ;
         function updateValue(value) {
-            const convertedValue = (value * exchangeRates[currentCurrency]).toFixed(2);
+            var convertedValue = (value * exchangeRates[currentCurrency]).toFixed(2);
             document.getElementById('selectedValue').innerText = `Selected Amount: ${currentCurrency} ${convertedValue}`;
         }
 
@@ -49,11 +50,10 @@
                 customAmountInput.max = 5500.00;
             }
             updateValue(sliderValue);
+            exports.receivedata = {
+                currentCurrency: currentCurrency,
+                customAmountInput: customAmountInput,
+            }
         }
         
-        module.exports = {
-            currentCurrency,
-            exchangeRates,
-            getConvertedValue: () => convertedValue,
-        };
         
