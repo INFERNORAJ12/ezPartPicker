@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Components Listing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8efff;
+        }
+        header {
+            background: #0078d4;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            font-size: 2.5em;
+        }
+        nav {
+            background: #005a9e;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f0f4ff;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 40px 20px;
+            justify-content: center;
+            background: #2d0d35;
+        }
+        .component {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 250px;
+            cursor: pointer;
+        }
+        .component img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .component h3 {
+            margin: 15px 0;
+            font-size: 1.2em;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #004080;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        EZ PC Picker
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="build.html">Builds</a>
+        <a href="components1.html">Components</a>
+        <a href="guides1.html">Guides</a>
+        <a href="#">Contact</a>
+    </nav>
+    <div class="container">
+        <a href="cpu.html" class="component">
+            <img src="https://www.pcworld.com/wp-content/uploads/2023/04/ryzen-cpu-promo-shot-1.jpg?resize=1240%2C697&quality=50&strip=all" alt="CPU">
+            <h3>CPU</h3>
+        </a>
+        <a href="cpu-cooler.html" class="component">
+            <img src="https://media.istockphoto.com/id/1744240374/photo/computer-fan-modern-powerful-cooler-for-cooling-the-cpu.jpg?s=612x612&w=0&k=20&c=ZZgW2Z5mXinHHkHVXkehblR_xjfT9vfi_qNBUiZeKPM=" alt="CPU Cooler">
+            <h3>CPU Cooler</h3>
+        </a>
+        <a href="motherboard.html" class="component">
+            <img src="https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2024/04/a-budget-motherboard.png" alt="Motherboard">
+            <h3>Motherboard</h3>
+        </a>
+        <a href="memory.html" class="component">
+            <img src="https://media.istockphoto.com/id/2162627360/photo/a-specialist-installs-ddr-5-memory-on-the-latest-motherboard.jpg?s=612x612&w=0&k=20&c=DBU6PntSSkaGnpv_ZWVO9bODaC4-EInt9340XAC9MvE=" alt="RAM Sticks">
+            <h3>Memory</h3>
+        </a>
+        <a href="storage.html" class="component">
+            <img src="https://media.istockphoto.com/id/1297625706/photo/samsung-ssd-970-evo-plus-nvme-500-gb-on-a-dark-background-small-and-fast-solid-state-drive.jpg?s=612x612&w=0&k=20&c=JOZa61BJJuTIW9DeKhxGQ-XcoN8zOmueRj9UOGL34sc=" alt="SSD">
+            <h3>Storage</h3>
+        </a>
+        <a href="gpu.html" class="component">
+            <img src="https://media.istockphoto.com/id/1296124309/photo/two-fans-palit-nvidia-geforce-rtx-3060-ti-dual-oc-gaming-graphics-card-against-dark.jpg?s=612x612&w=0&k=20&c=ciReo0a8GPaQIG80-UWyo5LznlJiLNoma1Hm6JryMCw=" alt="GPU">
+            <h3>Video Card</h3>
+        </a>
+        <a href="psu.html" class="component">
+            <img src="https://media.istockphoto.com/id/1414944172/photo/computer-equipment-powerful-power-supply-studio-shot-retouched-image.jpg?s=612x612&w=0&k=20&c=zyfYpFSQB2klMiMy3gYnY6kmRiuh1ieEMfHywjOTndc=" alt="PSU">
+            <h3>Power Supply</h3>
+        </a>
+    </div>
+    <footer>
+        &copy; 2024 EZ PC Picker. All Rights Reserved.
+    </footer>
+</body>
+</html>
