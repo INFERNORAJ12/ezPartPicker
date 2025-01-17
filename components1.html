@@ -8,27 +8,32 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 0 ;
             background-color: #e8efff;
         }
         header {
             background: #0078d4;
             color: white;
             text-align: center;
-            padding: 1em 0;
-            font-size: 2em;
+            padding: 20px ;
         }
+            header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
         nav {
             background: #005a9e;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             padding: 10px 0;
         }
         nav a {
             color: white;
             text-decoration: none;
-            font-size: 1.5em;
+            margin: 0 15px;
+            font-size: 1.2em;
         }
         nav a:hover {
             text-decoration: underline;
@@ -49,8 +54,8 @@
         .container {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            padding: 40px 20px;
+            gap: 30px;
+            padding: 60px 20px;
             justify-content: center;
             background: #2d0d35;
         }
@@ -72,17 +77,11 @@
             margin: 15px 0;
             font-size: 1.2em;
         }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background: #004080;
-            color: white;
-        }
     </style>
 </head>
 <body>
     <header>
-        EZ PC Picker
+        <h1>EZ PC Picker</h1>
     </header>
     <nav>
         <a href="index.html">Home</a>
@@ -121,8 +120,5 @@
             <h3>Power Supply</h3>
         </a>
     </div>
-    <footer>
-        &copy; 2024 EZ PC Picker. All Rights Reserved.
-    </footer>
 </body>
 </html>
