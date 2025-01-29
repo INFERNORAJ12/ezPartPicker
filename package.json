@@ -1,18 +1,19 @@
 {
-  "name": "server",
+  "name": "node-project",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "hello",
+  "main": "key.js",
   "scripts": {
-    "start": "nodemon index.js "
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Sarvesh",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "cors": "^2.8.5",
+    "color": "^4.2.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mongoose": "^8.9.1",
-    "nodemon": "^3.1.9"
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "url": "^0.11.4"
   }
 }

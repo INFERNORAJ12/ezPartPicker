@@ -1,0 +1,144 @@
+
+.slider-container button {
+    margin: 5px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #3a003e;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #0078d4;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+nav {
+    background-color: #005a9e;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2em;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px); /* Adjusted to keep space for header/nav */
+}
+
+/* Centered box */
+.center-box {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 50%;
+    max-width: 600px;
+    text-align: center;
+}
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.center-box {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 50%;
+    max-width: 600px;
+    text-align: center;
+}
+.slider-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+.slider-container h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.slider-container label {
+    display: block;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.slider-container input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.slider-container .value-display {
+    font-size: 1.5em;
+    color: #0078d4;
+    margin-top: 10px;
+}
+
+.slider-container .custom-amount {
+    margin-top: 20px;
+}
+
+.slider-container input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.slider-container button {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.slider-container button:hover {
+    background-color: #005a9e;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 0;
+}

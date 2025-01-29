@@ -4,14 +4,29 @@ const {
     HarmBlockThreshold,
   } = require("@google/generative-ai");
   require("dotenv").config()
-  const receivedata = require("./build.js");
   const apiKey = "AIzaSyBQcT-D24RyBA3L8PqEugWBmrnYvlavAHU";
   const genAI = new GoogleGenerativeAI(apiKey);
-  
+  const convertedBudget = (selectedBudget * exchangeRates[currentCurrency]).toFixed(2);
   const model = genAI.getGenerativeModel({
     model: "gemini-2.0-flash-exp",
-    systemInstruction: `you will only list out the parts of  the pc with there full brand name like for example i5 12400f, ryzen 5 5500, etc with there price and also make sure that the parts are compatible and if no gpu can be fit for the budget then add a cpu which has an intergrated graphics . with there brand name like asus, msi, gigabyte etc, and nothing else like the explation is not needed,pc should include a cpu,motherboard, ram, storage,case, psu and only add gpu if it fits the budget. i want a pc for under or exactly equal to  ${receivedata}` 
+    systemInstruction: `you will only list out the parts of  the pc with there full brand name like for example i5 12400f, ryzen 5 5500, etc with there price and also make sure that the parts are compatible and if no gpu can be fit for the budget then add a cpu which has an intergrated graphics . with there brand name like asus, msi, gigabyte etc, and nothing else like the explation is not needed,pc should include a cpu,motherboard, ram, storage,case, psu and only add gpu if it fits the budget. i want a pc for under or exactly equal to  ${currentCurrency} ${convertedBudget}` 
   });
+
+function getQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+      budget: params.get('budget'),
+      currency: params.get('currency')
+  };
+}
+
+// Get the values
+const { budget, currency } = getQueryParams();
+
+// Example: Display the values in console or on the page
+console.log(`Budget: ${budget}, Currency: ${currency}`);
+document.getElementById('budgetDisplay').innerText = `Selected Budget: ${currency} ${budget}`;
+
   
   const generationConfig = {
     temperature: 0,
@@ -20,6 +35,7 @@ const {
     maxOutputTokens: 8192,
     responseMimeType: "text/plain",
   };
+
   
   async function run() {
     const chatSession = model.startChat({
