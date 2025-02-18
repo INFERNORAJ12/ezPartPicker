@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-build</title>
+    <link rel="stylesheet" href="../css/AI-build.css">    
+</head>
+<body>
+    <header>
+        <a href="/" style="text-decoration: none;">
+            <h1>EZPartPicker</h1>
+        </a>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <div class="dropdown">
+                <a href="#">Build</a>
+                <div class="dropdown-content">
+                    <a href="/your-build">Your Builds</a>
+                    <a href="/AI-build">A.I Generated Rig</a>
+                    <a href="/Component">Components</a>
+                    <a href="/guide">Guide</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <form action="/AI-build" method="get">
+            <h2>A.I Generated Rig</h2>
+            
+            <input type="number" id="amount" name="amount" placeholder="Enter amount" required><BR>
+            <input type="submit" value="submit" id="sumbit" class="btn">
+        </form>
+    </section>
+    <div class="nishantkiden">
+        <% if (pcParts && Array.isArray(pcParts)) { %>
+            <ul>
+                <% pcParts.forEach(part => { %>
+                    <li><strong><%= part.part %><br></strong> <%= part.name %>: $<%= part.price %></li><br>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No PC parts available or invalid data.</p>
+        <% } %>
+    </div>
+</body>
+</html>

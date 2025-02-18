@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZPartPicker</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+      <a href="/" style="text-decoration: none;"><h1>EZPartPicker</h1><a>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <div class="dropdown"><a>Build</a>
+              <div class="dropdown-content">
+                <a href="/your-build">Your Builds</a>
+                <a href="/AI-build">A.I Generated Rig</a>
+                <a href="/Component">Components</a>
+                <a href="/guide">Guide</a>
+            </div>
+          </div>
+            <% if (!user) { %>
+                <a href="/login">Login</a>
+                <a href="/signin">Sign Up</a>
+            <% } else { %>
+                <a href="/logout">Logout (<%= JSON.parse(user).name %>)</a>
+            <% } %>
+        </nav>
+    </header>
+
+    <!-- Recommended PC Builds Section -->
+    <div class="hero">
+        <h2>Build Your Perfect PC</h2>
+        <p>Choose the best components and ensure compatibility with ease.</p>
+    </div>
+    
+    <div class="content">
+        <div class="card">
+            <img src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/09/newsroom-innovation-13th-gen-intel-core-1-feat.jpg.rendition.intel_.web_.1648.927.jpg" alt="CPU">
+            <h3>Processors</h3>
+            <p>Find the latest and most powerful CPUs for your build.</p>
+            <a href="/Component">Browse CPUs</a>
+        </div>
+        <div class="card">
+            <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/graphics-cards/geforce-ada-4090-web-og-1200x630@2x.jpg" alt="GPU">
+            <h3>Graphics Cards</h3>
+            <p>Discover GPUs for gaming, editing, and more.</p>
+            <a href="/Component">Browse GPUs</a>
+        </div>
+        <div class="card">
+            <img src="https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2024/04/a-budget-motherboard.png" alt="Motherboard">
+            <h3>Motherboards</h3>
+            <p>Choose the perfect motherboard for your CPU and needs.</p>
+            <a href="/Component">Browse Motherboards</a>
+        </div>
+    </div>
+    
+    </section>
+</body>
+</html>
