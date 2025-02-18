@@ -1,19 +1,27 @@
 {
-  "name": "node-project",
+  "name": "ezpartpicker-main",
   "version": "1.0.0",
-  "description": "hello",
-  "main": "key.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
-  "author": "Sarvesh",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
+  "type": "commonjs",
+  "description": "",
   "dependencies": {
-    "color": "^4.2.3",
+    "@google/generative-ai": "^0.21.0",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "fs": "^0.0.1-security",
-    "http": "^0.0.1-security",
-    "url": "^0.11.4"
+    "express-session": "^1.18.1",
+    "mongoose": "^8.9.5",
+    "nodemon": "^3.1.9",
+    "passport": "^0.7.0",
+    "passport-azure-ad": "^4.3.5",
+    "passport-google-oauth20": "^2.0.0"
   }
 }
