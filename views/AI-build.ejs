@@ -8,24 +8,27 @@
 </head>
 <body>
     <header>
-        <a href="/" style="text-decoration: none;">
-            <h1>EZPartPicker</h1>
-        </a>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <div class="dropdown">
-                <a href="#">Build</a>
+        <a href="/" style="text-decoration: none;"><h1>EZPartPicker</h1><a>
+          <nav>
+              <a href="/">Home</a>
+              <a href="/about">About</a>
+              <a href="/contact">Contact</a>
+              <div class="dropdown"><a>Build</a>
                 <div class="dropdown-content">
-                    <a href="/your-build">Your Builds</a>
-                    <a href="/AI-build">A.I Generated Rig</a>
-                    <a href="/Component">Components</a>
-                    <a href="/guide">Guide</a>
-                </div>
+                  <a href="/your-build">Your Builds</a>
+                  <a href="/AI-build">A.I Generated Rig</a>
+                  <a href="/Component">Components</a>
+                  <a href="/guide">Guide</a>
+              </div>
             </div>
-        </nav>
-    </header>
+              <% if (!user) { %>
+                  <a href="/login">Login</a>
+                  <a href="/signin">Sign Up</a>
+              <% } else { %>
+                  <a href="/logout">Logout (<%= JSON.parse(user).name %>)</a>
+              <% } %>
+          </nav>
+      </header>
     <section>
         <form action="/AI-build" method="get">
             <h2>A.I Generated Rig</h2>
