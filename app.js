@@ -10,10 +10,14 @@ app.set('view engine', 'ejs');
 app.use(express.static('public')); // Serve static files (CSS, images)
 app.use(cookieParser()); // Enable cookies
 
+// Load PC Builds from JSON
+const getBuilds = () => JSON.parse(fs.readFileSync('data/builds.json', 'utf-8'));
+
 // Home Page - Recommended PC Builds
 app.get('/', (req, res) => {
+    const builds = getBuilds();
     const user = req.cookies.user || null; // Check for user login cookie
-    res.render('index', { user });
+    res.render('index', { recommendedBuilds: builds, user });
 });
 
 // PC Build Details Page
@@ -77,7 +81,7 @@ app.get('/AI-build', async (req, res) => {
 
   if (!amount) {
     // If no amount is provided, render the page with a default message and no PC parts
-    return res.render('AI-build', { pcParts: null, message: 'Please enter a budget to generate the PC build.' });
+    return res.render('AI-build', { pcParts: null, message: 'Please enter a budget to generate the PC build.',user: req.cookies.user || null });
   }
 
   const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require("@google/generative-ai");
@@ -112,7 +116,7 @@ app.get('/AI-build', async (req, res) => {
     const responseText = result.response.text();
     const pcParts = JSON.parse(responseText);
     
-    res.render('AI-build', { pcParts: pcParts, message: `Generated PC build for $${amount}` });
+    res.render('AI-build', { pcParts: pcParts, message: `Generated PC build for $${amount}`,user: req.cookies.user || null });
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
