@@ -11,7 +11,7 @@ app.use(express.static('public')); // Serve static files (CSS, images)
 app.use(cookieParser()); // Enable cookies
 app.get('/', (req, res) => {
     const user = req.cookies.user || null; // Check for user login cookie
-    res.render('index', { recommendedBuilds: builds, user });
+    res.render('index', { user });
 });
 
 // PC Build Details Page
