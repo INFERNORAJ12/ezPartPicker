@@ -9,13 +9,7 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public')); // Serve static files (CSS, images)
 app.use(cookieParser()); // Enable cookies
-
-// Load PC Builds from JSON
-const getBuilds = () => JSON.parse(fs.readFileSync('data/builds.json', 'utf-8'));
-
-// Home Page - Recommended PC Builds
 app.get('/', (req, res) => {
-    const builds = getBuilds();
     const user = req.cookies.user || null; // Check for user login cookie
     res.render('index', { recommendedBuilds: builds, user });
 });
