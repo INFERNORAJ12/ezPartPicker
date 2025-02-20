@@ -109,7 +109,7 @@ app.get('/AI-build', async (req, res) => {
     const result = await chatSession.sendMessage(`${amount} USD`);
     const responseText = result.response.text();
     const pcParts = JSON.parse(responseText);
-    
+    //cookies
     res.render('AI-build', { pcParts: pcParts, message: `Generated PC build for $${amount}`,user: req.cookies.user || null });
   } catch (error) {
     console.error("Error:", error);
