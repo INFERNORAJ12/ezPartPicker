@@ -89,7 +89,7 @@ try{
 
 }catch(err){
   if(err){
-    alert("not found")
+   console.log("not found")
   }
 }
 
