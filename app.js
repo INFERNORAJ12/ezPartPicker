@@ -72,7 +72,7 @@ app.get('/login', (req, res) => {
 });
 
 //simulated logins
-app.post('/logins',async(req,res)=>{
+app.post('/login',async(req,res)=>{
 try{
   const {email , password}= req.body;
   let data=await User.find({email,password});
