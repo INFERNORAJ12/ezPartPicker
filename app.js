@@ -3,7 +3,8 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { prototype } = require('events');
-let cors=require("cors")
+let cors=require("cors");
+const { cpus } = require('os');
 require('dotenv').config()
 const app = express();
 app.use(express.urlencoded({ extended : true }));
@@ -19,14 +20,14 @@ app.get('/', (req, res) => {
 
 async function connected(){
   try{
-      await mongoose.connect('mongodb+srv://nishantadvani724:kPpWtMq8ZR5K4kMN@cluster0.qh81f.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0', {
+      await mongoose.connect('mongodb+srv://nishantadvani724:kPpWtMq8ZR5K4kMN@cluster0.qh81f.mongodb.net/rohitTeam?retryWrites=true&w=majority&appName=Cluster0', {
         useNewUrlParser: true,
         useUnifiedTopology: true
       }).then(()=>{
-        console.log("databse connected")
+        console.log("database connected")
       }).catch((err)=>{
         if(err){
-          console.log("databse not connected")    
+          console.log("database not connected")    
         }
         
       })
@@ -46,10 +47,20 @@ connected();
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
-  password: String
+  password: String,
 });
 
  const User = mongoose.model('User', userSchema);
+ const pc = new mongoose.Schema({}, { strict: false});
+
+ const cpu = mongoose.model("cpu",pc,"cpus");
+ const gpu = mongoose.model("gpu",pc,"gpu");
+ const psu = mongoose.model("psu",pc,"powersupply");
+ const ram = mongoose.model("ram",pc,"ram");
+ const ssd = mongoose.model("ssd",pc,"ssd");
+ const mobo = mongoose.model("motherBoard",pc,"motherBoard");
+ const cases = mongoose.model("case",pc,"case");
+ const cooler = mongoose.model("cooler",pc,"cooler");
 
 // PC Build Details Page
 app.get('/build/:id', (req, res) => {
@@ -208,6 +219,92 @@ app.get('/Component', (req, res) => {
 app.get('/submit-contact', (req, res) => {
     res.render('submit-contact');
 });
+
+
+
+
+app.get('/processor', async (req, res) => {
+  try{
+  let cpus = await cpu.find();
+  res.render('processor', { user: req.cookies.user || null , cpus });
+  }
+  catch(err){
+    console.log(err)
+  }
+});
+
+app.get('/cabinet', async (req, res) => {
+  try{
+    let cabinet = await cases.find();
+  res.render('cabinet', { user: req.cookies.user || null , cabinet });
+}
+catch(err){
+  console.log(err)
+}
+});
+
+app.get('/cooler', async (req, res) => {
+  try{
+    let coolers = await cooler.find();
+  res.render('cooler', { user: req.cookies.user || null , coolers });
+}
+catch(err){
+  console.log(err)
+}
+});
+
+app.get('/gpu', async (req, res) => {
+  try{
+    let gpus = await gpu.find();
+  res.render('gpu', { user: req.cookies.user || null , gpus });
+}
+catch(err){
+  console.log(err)
+}
+});
+
+app.get('/memory', async (req, res) => {
+  try{
+    let rams = await ram.find();
+  res.render('memory', { user: req.cookies.user || null , rams });
+}
+catch(err){
+  console.log(err)
+}
+});
+
+app.get('/motherboard', async (req, res) => {
+  try{
+    let motherBoard = await mobo.find();
+  res.render('motherBoard', { user: req.cookies.user || null , motherBoard });
+}
+catch(err){
+  console.log(err)
+}
+});
+
+app.get('/powersupply', async (req, res) => {
+  try{
+    let psus = await psu.find();
+  res.render('powersupply', { user: req.cookies.user || null , psus });
+}
+catch(err){
+  console.log(err)
+}
+});
+
+app.get('/storage', async (req, res) => {
+  try{
+    let ssds = await ssd.find();
+  res.render('storage', { user: req.cookies.user || null , ssds });
+}
+catch(err){
+  console.log(err)
+}
+});
+
+
+
 
 const PORT = 9001;
 app.listen(PORT, () => console.log(`Pass http://localhost:${PORT}`));

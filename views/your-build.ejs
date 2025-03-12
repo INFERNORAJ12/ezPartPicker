@@ -5,29 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Build</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        
+    </style>
 </head>
 <body>
     <header>
-        <a href="/" style="text-decoration: none;"><h1>EZPartPicker</h1><a>
-          <nav>
-              <a href="/">Home</a>
-              <a href="/about">About</a>
-              <a href="/contact">Contact</a>
-              <div class="dropdown"><a>Build</a>
+        <a href="/" style="text-decoration: none;"><h1>EZPcPicker</h1></a>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <div class="dropdown"><a>Build</a>
                 <div class="dropdown-content">
-                  <a href="/your-build">Your Builds</a>
-                  <a href="/AI-build">A.I Generated Rig</a>
-                  <a href="/Component">Components</a>
-                  <a href="/guide">Guide</a>
-              </div>
+                    <a href="/your-build">Your Builds</a>
+                    <a href="/AI-build">A.I Generated Rig</a>
+                    <a href="/Component">Components</a>
+                    <a href="/guide">Guide</a>
+                </div>
             </div>
             <% if (!user) { %>
-              <a href="/login">Login</a>
-              <a href="/signin">Sign Up</a>
-          <% } else { %>
-              <a href="/logout">Logout (<%= JSON.parse(user).name %>)</a>
-          <% } %>
-          </nav>
-      </header>
+                <a href="/login">Login</a>
+                <a href="/signin">Sign Up</a>
+            <% } else { %>
+                <a href="/logout">Logout (<%= JSON.parse(user).name %>)</a>
+            <% } %>
+        </nav>
+    </header>
+
+    <main>
+        <div class="component-container">
+            <div class="component">
+                <span id="cpu-selection">Select Processor</span>
+                <a id="cpu-link" href="/processor"><button id="cpu-button" class="add-button">+</button></a>
+            </div>
+        </div>
+        <div class="component-container">
+            <div class="component">
+                <span id="motherboard-selection">Select Motherboard</span> 
+                <a id="motherboard-link" href="/motherboard"><button id="motherboard-button" class="add-button">+</button></a>
+            </div>
+        </div>
+        <div class="component-container">
+            <div class="component">
+                <span id="memory-selection">Select Memory</span>
+                <a id="memory-link" href="/memory"><button id="memory-button" class="add-button">+</button></a>
+            </div>
+        </div>
+        <div class="component-container">
+            <div class="component">
+                <span id="gpu-selection">Select Graphics Card</span> 
+                <a id="gpu-link" href="/gpu"><button id="gpu-button" class="add-button">+</button></a>
+            </div>
+        </div>
+        <div class="component-container">
+            <div class="component">
+                <span id="storage-selection">Select SSD</span>
+                <a id="storage-link" href="/storage"><button id="storage-button" class="add-button">+</button></a>
+            </div>
+        </div>
+        <div class="component-container">
+            <div class="component">
+                <span id="cooler-selection">Select CPU Cooler</span> 
+                <a id="cooler-link" href="/cooler"><button id="cooler-button" class="add-button">+</button></a>
+            </div>
+        </div>
+        <div class="component-container">
+            <div class="component">
+                <span id="psu-selection">Select Power Supply</span> 
+                <a id="psu-link" href="/powersupply"><button id="psu-button" class="add-button">+</button></a>
+            </div>
+        </div>
+        <div class="component-container">
+            <div class="component">
+                <span id="cabinet-selection">Select Cabinet</span>
+                <a id="cabinet-link" href="/cabinet"><button id="cabinet-button" class="add-button">+</button></a>
+            </div>
+        </div>
+        <div class="component-container">
+            <div class="component">
+                <span id="total">Total Amt. of your RIG :</span>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="./js/cpu.js"></script>
+    <script src="./js/motherboard.js"></script>
+    <script src="./js/memory.js"></script>
+    <script src="./js/gpu.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/cooler.js"></script>
+    <script src="./js/powersupply.js"></script>
+    <script src="./js/cases.js"></script>
 </body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <a href="/" style="text-decoration: none;"><h1>EZPcPicker</h1></a>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <div class="dropdown"><a>Build</a>
+                <div class="dropdown-content">
+                    <a href="/your-build">Your Builds</a>
+                    <a href="/AI-build">A.I Generated Rig</a>
+                    <a href="/Component">Components</a>
+                    <a href="/guide">Guide</a>
+                </div>
+            </div>
+            <% if (!user) { %>
+                <a href="/login">Login</a>
+                <a href="/signin">Sign Up</a>
+            <% } else { %>
+                <a href="/logout">Logout (<%= JSON.parse(user).name %>)</a>
+            <% } %>
+        </nav>
+    </header>
+    <section>
+        <div class="content">
+            <div class="card">
+                <img src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/09/newsroom-innovation-13th-gen-intel-core-1-feat.jpg.rendition.intel_.web_.1648.927.jpg" alt="CPU">
+                <h3>Processors</h3>
+                <a href="/processor">Browse Processors</a>
+            </div>
+            <div class="card">
+                <img src="https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2024/04/a-budget-motherboard.png" alt="Motherboard">
+                <h3>Motherboard</h3>
+                <a href="/motherboard">Browse Motherboards</a>
+            </div>
+            <div class="card">
+                <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/graphics-cards/geforce-ada-4090-web-og-1200x630@2x.jpg" alt="GPU">
+                <h3>GPU</h3>
+                <a href="/gpu">Browse Graphic Cards</a>
+            </div>
+            <div class="card">
+                <img src="https://cdn.mos.cms.futurecdn.net/NSYr6nsP63PRbdJFMNL5pT.jpg" alt="Memory">
+                <h3>Memory</h3>
+                <a href="/memory">Browse Memory Sticks</a>
+            </div>
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/1297625706/photo/samsung-ssd-970-evo-plus-nvme-500-gb-on-a-dark-background-small-and-fast-solid-state-drive.jpg?s=612x612&w=0&k=20&c=JOZa61BJJuTIW9DeKhxGQ-XcoN8zOmueRj9UOGL34sc=" alt="SSD">
+                <h3>Storage</h3>
+                <a href="/storage">Browse Fast Storage</a>
+            </div>
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/1744240374/photo/computer-fan-modern-powerful-cooler-for-cooling-the-cpu.jpg?s=612x612&w=0&k=20&c=ZZgW2Z5mXinHHkHVXkehblR_xjfT9vfi_qNBUiZeKPM=" alt="Cooler">
+                <h3>Coolers</h3>
+                <a href="/cooler">Browse Coolers</a>
+            </div>
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/1414944172/photo/computer-equipment-powerful-power-supply-studio-shot-retouched-image.jpg?s=612x612&w=0&k=20&c=zyfYpFSQB2klMiMy3gYnY6kmRiuh1ieEMfHywjOTndc=" alt="Power Supply">
+                <h3>Power Supply</h3>
+                <a href="/powersupply">Browse Power Supply</a>
+            </div>
+            <div class="card">
+                <img src="https://press.asus.com/assets/w_1266,h_844/7301774e-2daf-4b2e-acd5-93a32a259bad/1820_1213.jpg" alt="Cases">
+                <h3>Cases</h3>
+                <a href="/Cabinet">Browse Cases</a>
+            </div>
+    </section>
+</body>
+</html>
