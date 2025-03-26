@@ -59,15 +59,16 @@
         <ol>
             <% psus.sort((a, b) => a.name.localeCompare(b.name)).forEach(psu => { %>
                 <li>
-                    <span><%= psu.name %></span>
-                    <button onclick="addToBuild('<%= psu.name %>')">+</button>
+                    <span><%= psu.name %><br>$<%= psu.price %></span>
+                    <button onclick="addToBuild('<%= psu.name %>','<%= psu.price %>')">+</button>
                 </li>
             <% }); %>
         </ol>
     </section>
     <script>
-        function addToBuild(psuName) {
+        function addToBuild(psuName, psuPrice) {
             localStorage.setItem("selectedPsu", psuName);
+            localStorage.setItem("selectedpsuPrice", psuPrice);
             window.location.href = "/your-build";
         }
     </script>

@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const coolerLink = document.getElementById("cooler-link");
 
     const selectedcooler = localStorage.getItem("selectedcooler");
+    const selectedcoolerPrice = localStorage.getItem("selectedcoolerPrice");
 
-    if (selectedcooler) {
-        coolerSelection.innerText = selectedcooler;
+    if (selectedcooler && selectedcoolerPrice) {
+        coolerSelection.innerText = `${selectedcooler} - $${selectedcoolerPrice}`;
 
         coolerButton.innerText = "-";
         coolerButton.classList.remove("add-button");
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         coolerButton.onclick = function () {
             localStorage.removeItem("selectedcooler");
+            localStorage.removeItem("selectedcoolerPrice");
             coolerSelection.innerText = "Select Cooler";
             coolerButton.innerText = "+";
             coolerButton.classList.remove("remove-button");

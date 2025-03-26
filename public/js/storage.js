@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const storageLink = document.getElementById("storage-link");
 
     const selectedstorage = localStorage.getItem("selectedstorage");
+    const selectedstoragePrice = localStorage.getItem("selectedstoragePrice");
 
-    if (selectedstorage) {
-        storageSelection.innerText = selectedstorage;
+    if (selectedstorage && selectedstoragePrice) {
+        storageSelection.innerText = `${selectedstorage} - $${selectedstoragePrice}`;
 
         storageButton.innerText = "-";
         storageButton.classList.remove("add-button");
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         storageButton.onclick = function () {
             localStorage.removeItem("selectedstorage");
+            localStorage.removeItem("selectedstoragePrice");
             storageSelection.innerText = "Select SSD";
             storageButton.innerText = "+";
             storageButton.classList.remove("remove-button");

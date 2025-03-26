@@ -59,15 +59,16 @@
         <ul>
             <% cabinet.sort((a, b) => a.name.localeCompare(b.name)).forEach(cases => { %>
                 <li>
-                    <span><%= cases.name %><br>:$</span>
-                    <button onclick="addToBuild('<%= cases.name %>')">+</button>
+                    <span><%= cases.name %><br>$<%= cases.price %></span>
+                    <button onclick="addToBuild('<%= cases.name %>','<%= cases.price %>')">+</button>
                 </li>
             <% }); %>
         </ul>
     </section>
     <script>
-        function addToBuild(cabinetName) {
+        function addToBuild(cabinetName, cabinetPrice) {
             localStorage.setItem("selectedCabinet", cabinetName);
+            localStorage.setItem("selectedcasePrice", cabinetPrice);
             window.location.href = "/your-build";
         }
     </script>

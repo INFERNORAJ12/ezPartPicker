@@ -59,15 +59,16 @@
         <ol>
             <% cpus.sort((a, b) => a.name.localeCompare(b.name)).forEach(cpu => { %>
                 <li>
-                    <span><%= cpu.name %></span>
-                    <button onclick="addToBuild('<%= cpu.name %>')">+</button>
+                    <span><%= cpu.name %><br>$<%= cpu.price %></span>
+                    <button onclick="addToBuild('<%= cpu.name %>','<%= cpu.price %>')">+</button>
                 </li>
             <% }); %>
         </ol>
     </section>
     <script>
-        function addToBuild(cpuName) {
+        function addToBuild(cpuName, cpuPrice) {
             localStorage.setItem("selectedcpu", cpuName);
+            localStorage.setItem("selectedcpuPrice", cpuPrice);
             window.location.href = "/your-build";
         }
     </script>

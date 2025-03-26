@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const motherboardLink = document.getElementById("motherboard-link");
 
     const selectedmotherboard = localStorage.getItem("selectedmotherboard");
+    const selectedmotherboardPrice = localStorage.getItem("selectedmotherboardPrice");
 
-    if (selectedmotherboard) {
-        motherboardSelection.innerText = selectedmotherboard;
+    if (selectedmotherboard && selectedmotherboardPrice) {
+        motherboardSelection.innerText = `${selectedmotherboard} - $${selectedmotherboardPrice}`;
 
         motherboardButton.innerText = "-";
         motherboardButton.classList.remove("add-button");
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         motherboardButton.onclick = function () {
             localStorage.removeItem("selectedmotherboard");
+            localStorage.removeItem("selectedmotherboardPrice");
             motherboardSelection.innerText = "Select Motherboard";
             motherboardButton.innerText = "+";
             motherboardButton.classList.remove("remove-button");

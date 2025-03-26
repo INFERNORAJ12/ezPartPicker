@@ -59,15 +59,16 @@
         <ul>
             <% rams.sort((a, b) => a.name.localeCompare(b.name)).forEach(ram => { %>
                 <li>
-                    <span><%= ram.name %></span>
-                    <button onclick="addToBuild('<%= ram.name %>')">+</button>
+                    <span><%= ram.name %><br>$<%= ram.price %></span>
+                    <button onclick="addToBuild('<%= ram.name %>','<%= ram.price %>')">+</button>
                 </li>
             <% }); %>
         </ul>
     </section>
     <script>
-        function addToBuild(memoryName) {
+        function addToBuild(memoryName, memoryPrice) {
             localStorage.setItem("selectedmemory", memoryName);
+            localStorage.setItem("selectedmemoryPrice", memoryPrice);
             window.location.href = "/your-build";
         }
     </script>

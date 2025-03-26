@@ -59,15 +59,16 @@
         <ul>
             <% gpus.sort((a, b) => a.name.localeCompare(b.name)).forEach(gpu => { %>
                 <li>
-                    <span><%= gpu.name %></span>
-                    <button onclick="addToBuild('<%= gpu.name %>')">+</button>
+                    <span><%= gpu.name %><br>$<%= gpu.price %></span>
+                    <button onclick="addToBuild('<%= gpu.name %>','<%= gpu.price %>')">+</button>
                 </li>
             <% }); %>
         </ul>
     </section>
     <script>
-        function addToBuild(gpuName) {
+        function addToBuild(gpuName, gpuPrice) {
             localStorage.setItem("selectedgpu", gpuName);
+            localStorage.setItem("selectedgpuPrice", gpuPrice);
             window.location.href = "/your-build";
         }
     </script>

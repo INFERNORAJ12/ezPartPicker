@@ -59,15 +59,16 @@
         <ul>
             <% coolers.sort((a, b) => a.name.localeCompare(b.name)).forEach(cooler => { %>
                 <li>
-                    <span><%= cooler.name %></span>
-                    <button onclick="addToBuild('<%= cooler.name %>')">+</button>
+                    <span><%= cooler.name %><br>$<%= cooler.price %></span>
+                    <button onclick="addToBuild('<%= cooler.name %>','<%= cooler.price %>')">+</button>
                 </li>
             <% }); %>
         </ul>
     </section>
     <script>
-        function addToBuild(coolerName) {
+        function addToBuild(coolerName, coolerPrice) {
             localStorage.setItem("selectedcooler", coolerName);
+            localStorage.setItem("selectedcoolerPrice", coolerPrice);
             window.location.href = "/your-build";
         }
     </script>

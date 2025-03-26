@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const gpuLink = document.getElementById("gpu-link");
 
     const selectedgpu = localStorage.getItem("selectedgpu");
+    const selectedgpuPrice = localStorage.getItem("selectedgpuPrice");
 
-    if (selectedgpu) {
-        gpuSelection.innerText = selectedgpu;
+    if (selectedgpu && selectedgpuPrice) {
+        gpuSelection.innerText = `${selectedgpu} - $${selectedgpuPrice}`;
 
         gpuButton.innerText = "-";
         gpuButton.classList.remove("add-button");
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         gpuButton.onclick = function () {
             localStorage.removeItem("selectedgpu");
+            localStorage.removeItem("selectedgpuPrice");
             gpuSelection.innerText = "Select Graphic Card";
             gpuButton.innerText = "+";
             gpuButton.classList.remove("remove-button");

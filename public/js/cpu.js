@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const cpuLink = document.getElementById("cpu-link");
 
     const selectedcpu = localStorage.getItem("selectedcpu");
+    const selectedcpuPrice = localStorage.getItem("selectedcpuPrice");
 
-    if (selectedcpu) {
-        cpuSelection.innerText = selectedcpu;
+    if (selectedcpu && selectedcpuPrice) {
+        cpuSelection.innerText = `${selectedcpu} - $${selectedcpuPrice}`;
 
         cpuButton.innerText = "-";
         cpuButton.classList.remove("add-button");
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         cpuButton.onclick = function () {
             localStorage.removeItem("selectedcpu");
+            localStorage.removeItem("selectedcpuPrice");
             cpuSelection.innerText = "Select Processor";
             cpuButton.innerText = "+";
             cpuButton.classList.remove("remove-button");

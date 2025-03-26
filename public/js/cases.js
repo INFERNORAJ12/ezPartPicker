@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const cabinetLink = document.getElementById("cabinet-link");
 
     const selectedCabinet = localStorage.getItem("selectedCabinet");
+    const selectedcasePrice = localStorage.getItem("selectedcasePrice");
 
-    if (selectedCabinet) {
+    if (selectedCabinet && selectedcasePrice) {
 
-        cabinetSelection.innerText = selectedCabinet;
+        cabinetSelection.innerText = `${selectedCabinet} - $${selectedcasePrice}`;
 
 
         cabinetButton.innerText = "-";
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         cabinetButton.onclick = function () {
             localStorage.removeItem("selectedCabinet");
+            localStorage.removeItem("selectedcasePrice");
             cabinetSelection.innerText = "Select Cabinet";
             cabinetButton.innerText = "+";
             cabinetButton.classList.remove("remove-button");

@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const psuLink = document.getElementById("psu-link");
 
     const selectedPsu = localStorage.getItem("selectedPsu");
+    const selectedpsuPrice = localStorage.getItem("selectedpsuPrice");
 
-    if (selectedPsu) {
-        psuSelection.innerText = selectedPsu;
+    if (selectedPsu && selectedpsuPrice) {
+        psuSelection.innerText = `${selectedPsu} - $${selectedpsuPrice}`;
 
         psuButton.innerText = "-";
         psuButton.classList.remove("add-button");
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         psuButton.onclick = function () {
             localStorage.removeItem("selectedPsu");
+            localStorage.removeItem("selectedpsuPrice");
             psuSelection.innerText = "Select PowerSupply";
             psuButton.innerText = "+";
             psuButton.classList.remove("remove-button");

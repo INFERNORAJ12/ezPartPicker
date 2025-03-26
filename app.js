@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 async function connected(){
   try{
-      await mongoose.connect('mongodb+srv://nishantadvani724:kPpWtMq8ZR5K4kMN@cluster0.qh81f.mongodb.net/rohitTeam?retryWrites=true&w=majority&appName=Cluster0', {
+      await mongoose.connect('mongodb+srv://nishantadvani724:kPpWtMq8ZR5K4kMN@cluster0.qh81f.mongodb.net/rohitteams?retryWrites=true&w=majority&appName=Cluster0', {
         useNewUrlParser: true,
         useUnifiedTopology: true
       }).then(()=>{
@@ -53,14 +53,14 @@ const userSchema = new mongoose.Schema({
  const User = mongoose.model('User', userSchema);
  const pc = new mongoose.Schema({}, { strict: false});
 
- const cpu = mongoose.model("cpu",pc,"cpus");
- const gpu = mongoose.model("gpu",pc,"gpu");
- const psu = mongoose.model("psu",pc,"powersupply");
- const ram = mongoose.model("ram",pc,"ram");
- const ssd = mongoose.model("ssd",pc,"ssd");
- const mobo = mongoose.model("motherBoard",pc,"motherBoard");
- const cases = mongoose.model("case",pc,"case");
- const cooler = mongoose.model("cooler",pc,"cooler");
+ const cpu = mongoose.model("cpus",pc,"cpus");
+ const gpu = mongoose.model("gpus",pc,"gpus");
+ const psu = mongoose.model("psus",pc,"powersupplys");
+ const ram = mongoose.model("rams",pc,"rams");
+ const ssd = mongoose.model("ssds",pc,"ssds");
+ const mobo = mongoose.model("motherboards",pc,"motherboards");
+ const cases = mongoose.model("cases",pc,"cases");
+ const cooler = mongoose.model("coolers",pc);
 
 // PC Build Details Page
 app.get('/build/:id', (req, res) => {

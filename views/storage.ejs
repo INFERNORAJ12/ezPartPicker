@@ -59,15 +59,16 @@
         <ol>
             <% ssds.sort((a, b) => a.name.localeCompare(b.name)).forEach(ssd => { %>
                 <li>
-                    <span><%= ssd.name %></span>
-                    <button onclick="addToBuild('<%= ssd.name %>')">+</button>
+                    <span><%= ssd.name %><br>$<%= ssd.price %></span>
+                    <button onclick="addToBuild('<%= ssd.name %>','<%= ssd.price %>')">+</button>
                 </li>
             <% }); %>
         </ol>
     </section>
     <script>
-        function addToBuild(storageName) {
+        function addToBuild(storageName, storagePrice) {
             localStorage.setItem("selectedstorage", storageName);
+            localStorage.setItem("selectedstoragePrice", storagePrice);
             window.location.href = "/your-build";
         }
     </script>

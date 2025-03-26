@@ -59,15 +59,16 @@
         <ul>
             <% motherBoard.sort((a, b) => a.name.localeCompare(b.name)).forEach(mobo => { %>
                 <li>
-                    <span><%= mobo.name %></span>
-                    <button onclick="addToBuild('<%= mobo.name %>')">+</button>
+                    <span><%= mobo.name %><br>$<%= mobo.price %></span>
+                    <button onclick="addToBuild('<%= mobo.name %>','<%= mobo.price %>')">+</button>
                 </li>
             <% }); %>
         </ul>
     </section>
     <script>
-        function addToBuild(motherboardName) {
+        function addToBuild(motherboardName, motherboardPrice) {
             localStorage.setItem("selectedmotherboard", motherboardName);
+            localStorage.setItem("selectedmotherboardPrice", motherboardPrice);
             window.location.href = "/your-build";
         }
     </script>
