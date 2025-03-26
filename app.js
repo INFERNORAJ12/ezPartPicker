@@ -147,10 +147,6 @@ app.get('/about', (req, res) => {
   res.render('about', { user: req.cookies.user || null }); 
 })
 
-app.get('/contact', (req, res) => {
-  res.render('contact', { user: req.cookies.user || null }); 
-})
-
 app.get('/your-build', (req, res) => {
   res.render('your-build', { user: req.cookies.user || null});
 })
@@ -205,13 +201,6 @@ app.get('/AI-build', async (req, res) => {
 app.get('/Component', (req, res) => {
   res.render('Component', { user: req.cookies.user || null });  
 })
-app.get('/submit-contact', (req, res) => {
-    res.render('submit-contact');
-});
-
-
-
-
 app.get('/processor', async (req, res) => {
   try{
   let cpus = await cpu.find();
