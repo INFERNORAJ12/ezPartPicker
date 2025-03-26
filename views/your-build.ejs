@@ -84,12 +84,22 @@
         </div>
         <div class="component-container">
             <div class="component">
-                <span id="total">Total Amt. of your RIG :  </span>
+                <span id="total">Total Amt. of your RIG :</span>
             </div>
         </div>
     </main>
-
-
+    <script>
+         const psuPrice = parseFloat(localStorage.getItem("selectedpsuPrice")) || 0;
+        const cpuPrice = parseFloat(localStorage.getItem("selectedcpuPrice")) || 0;
+        const gpuPrice = parseFloat(localStorage.getItem("selectedgpuPrice")) || 0;
+        const ramPrice = parseFloat(localStorage.getItem("selectedmemoryPrice")) || 0;
+        const motherboardPrice = parseFloat(localStorage.getItem("selectedmotherboardPrice")) || 0
+        const casePrice = parseFloat(localStorage.getItem("selectedcasePrice")) || 0
+        const coolerPrice = parseFloat(localStorage.getItem("selectedcoolerPrice")) || 0
+        let total = psuPrice + cpuPrice + gpuPrice + ramPrice + motherboardPrice + casePrice + coolerPrice
+        const totalEl = document.getElementById('total');
+        totalEl.textContent = `Total Amt. of your RIG: $${total.toFixed(2)}`;
+    </script>
     <script src="./js/cpu.js"></script>
     <script src="./js/motherboard.js"></script>
     <script src="./js/memory.js"></script>

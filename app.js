@@ -38,8 +38,10 @@ async function connected(){
   }
      
 }
-
 connected();
+
+
+
 
 
 
@@ -115,11 +117,6 @@ app.get('/signin', (req, res) => {
   res.render('signin');
 });
 
-// Simulated Login (For Now)
-// app.post('/signin', (req, res) => {
-//   const { name,email, password } = req.body;
-
-// this the testing code for signin
 app.post('/signin', async (req, res) => {
   try{
     const { name, email, password } = req.body;
@@ -136,15 +133,7 @@ app.post('/signin', async (req, res) => {
   
   
 });
-//from here to the testing signin delete
 
-
-
-//   res.cookie('user', JSON.stringify({ name: name, email:email,password:password}), { maxAge: 3600000 });
-//   res.redirect('/');
-// });
-
-// Simulated Logout
 app.get('/logout', (req, res) => {
   res.clearCookie('user');
   res.redirect('/');
@@ -163,7 +152,7 @@ app.get('/contact', (req, res) => {
 })
 
 app.get('/your-build', (req, res) => {
-  res.render('your-build', { user: req.cookies.user || null });
+  res.render('your-build', { user: req.cookies.user || null});
 })
 app.get('/AI-build', async (req, res) => {
   const amount = req.query.amount;
@@ -272,11 +261,10 @@ catch(err){
   console.log(err)
 }
 });
-
 app.get('/motherboard', async (req, res) => {
   try{
     let motherBoard = await mobo.find();
-  res.render('motherboard', { user: req.cookies.user || null , motherBoard });
+  res.render('motherboard', { user: req.cookies.user || null , motherBoard});
 }
 catch(err){
   console.log(err)
@@ -302,8 +290,6 @@ catch(err){
   console.log(err)
 }
 });
-
-
 
 
 const PORT = 9001;

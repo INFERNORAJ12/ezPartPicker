@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedCabinet = localStorage.getItem("selectedCabinet");
     const selectedcasePrice = localStorage.getItem("selectedcasePrice");
 
+
     if (selectedCabinet && selectedcasePrice) {
 
         cabinetSelection.innerText = `${selectedCabinet} - $${selectedcasePrice}`;
