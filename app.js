@@ -276,7 +276,7 @@ catch(err){
 app.get('/motherboard', async (req, res) => {
   try{
     let motherBoard = await mobo.find();
-  res.render('motherBoard', { user: req.cookies.user || null , motherBoard });
+  res.render('motherboard', { user: req.cookies.user || null , motherBoard });
 }
 catch(err){
   console.log(err)
