@@ -28,6 +28,33 @@
         button:hover {
             background-color: #d19c4c;
         }
+        .filters {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        label {
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 25%;
+            padding: 15px;
+            border-right: 1px solid #ccc;
+        }
+        .main-content {
+            width: 75%;
+            padding: 15px;
+        }
+        h3 {
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -53,23 +80,53 @@
             <% } %>
         </nav>
     </header>
-    <section>
-        <h2>List of Available Cabinets</h2>
-        <p>Select Cabinets and build your PC :</p>
-        <ul>
-            <% cabinet.sort((a, b) => a.name.localeCompare(b.name)).forEach(cases => { %>
-                <li>
-                    <span><%= cases.name %><br>$<%= cases.price %></span>
-                    <button onclick="addToBuild('<%= cases.name %>','<%= cases.price %>')">+</button>
-                </li>
-            <% }); %>
-        </ul>
-    </section>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3>Filter by Form Factor</h3>
+            <div class="filters">
+                <label><input type="checkbox" class="form-filter" value="Mid Tower" onchange="filterCases()"> Mid Tower</label>
+                <label><input type="checkbox" class="form-filter" value="Full Tower" onchange="filterCases()"> Full Tower</label>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <section>
+                <h2>List of Available Cabinets</h2>
+                <p>Select Cabinets and build your PC :</p>
+                <ul id="cabinet-list">
+                    <% cabinet.sort((a, b) => a.name.localeCompare(b.name)).forEach(cases => { %>
+                        <li data-form="<%= cases.form_factor %>">
+                            <span><%= cases.name %> (<%= cases.form_factor %>)<br>$<%= cases.price %></span>
+                            <button onclick="addToBuild('<%= cases.name %>','<%= cases.price %>')">+</button>
+                        </li>
+                    <% }); %>
+                </ul>
+            </section>
+        </div>
+    </div>
+
     <script>
         function addToBuild(cabinetName, cabinetPrice) {
             localStorage.setItem("selectedCabinet", cabinetName);
             localStorage.setItem("selectedcasePrice", cabinetPrice);
             window.location.href = "/your-build";
+        }
+
+        function filterCases() {
+            const checkboxes = document.querySelectorAll('.form-filter:checked');
+            const selectedFormFactors = Array.from(checkboxes).map(cb => cb.value);
+
+            const listItems = document.querySelectorAll('#cabinet-list li');
+
+            listItems.forEach(item => {
+                const formFactor = item.getAttribute('data-form');
+                if (selectedFormFactors.length === 0 || selectedFormFactors.includes(formFactor)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>

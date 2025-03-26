@@ -28,49 +28,126 @@
         button:hover {
             background-color: #d19c4c;
         }
+        .filters {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        label {
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 25%;
+            padding: 15px;
+            border-right: 1px solid #ccc;
+        }
+        .main-content {
+            width: 75%;
+            padding: 15px;
+        }
+        h3 {
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <a href="/" style="text-decoration: none;"><h1>EZPcPicker</h1></a>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <div class="dropdown"><a>Build</a>
-                <div class="dropdown-content">
-                    <a href="/your-build">Your Builds</a>
-                    <a href="/AI-build">A.I Generated Rig</a>
-                    <a href="/Component">Components</a>
-                    <a href="/guide">Guide</a>
-                </div>
+<header>
+    <a href="/" style="text-decoration: none;"><h1>EZPcPicker</h1></a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <div class="dropdown"><a>Build</a>
+            <div class="dropdown-content">
+                <a href="/your-build">Your Builds</a>
+                <a href="/AI-build">A.I Generated Rig</a>
+                <a href="/Component">Components</a>
+                <a href="/guide">Guide</a>
             </div>
-            <% if (!user) { %>
-                <a href="/login">Login</a>
-                <a href="/signin">Sign Up</a>
-            <% } else { %>
-                <a href="/logout">Logout (<%= JSON.parse(user).name %>)</a>
-            <% } %>
-        </nav>
-    </header>
-    <section>
-        <h2>List of Available Motherboards</h2>
-        <p>Select Motherboards and build your PC.</p>
-        <ul>
-            <% motherBoard.sort((a, b) => a.name.localeCompare(b.name)).forEach(mobo => { %>
-                <li>
-                    <span><%= mobo.name %><br>$<%= mobo.price %></span>
-                    <button onclick="addToBuild('<%= mobo.name %>','<%= mobo.price %>')">+</button>
-                </li>
+        </div>
+        <% if (!user) { %>
+            <a href="/login">Login</a>
+            <a href="/signin">Sign Up</a>
+        <% } else { %>
+            <a href="/logout">Logout (<%= JSON.parse(user).name %>)</a>
+        <% } %>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="sidebar">
+        <h3>Filter by Socket</h3>
+        <div class="filters">
+            <label><input type="checkbox" class="socket-filter" value="AM4" onchange="filterMobo()"> AM4</label>
+            <label><input type="checkbox" class="socket-filter" value="AM5" onchange="filterMobo()"> AM5</label>
+            <label><input type="checkbox" class="socket-filter" value="LGA 1700" onchange="filterMobo()"> LGA1700</label>
+        </div>
+
+        <h3>Filter by Name</h3>
+        <div class="filters">
+            <% 
+                // Extract unique first words for filtering
+                const firstWords = [...new Set(motherBoard.map(mobo => mobo.name.split(' ')[0]))];
+                firstWords.sort().forEach(word => { 
+            %>
+                <label>
+                    <input type="checkbox" class="name-filter" value="<%= word %>" onchange="filterMobo()"> <%= word %>
+                </label>
             <% }); %>
-        </ul>
-    </section>
-    <script>
-        function addToBuild(motherboardName, motherboardPrice) {
-            localStorage.setItem("selectedmotherboard", motherboardName);
-            localStorage.setItem("selectedmotherboardPrice", motherboardPrice);
-            window.location.href = "/your-build";
-        }
-    </script>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <section>
+            <h2>List of Available Motherboards</h2>
+            <p>Select Motherboards and build your PC.</p>
+            <ul id="mobo-list">
+                <% motherBoard.sort((a, b) => a.name.localeCompare(b.name)).forEach(mobo => { %>
+                    <li class="mobo-item" data-socket="<%= mobo.socket %>" data-name="<%= mobo.name.split(' ')[0] %>">
+                        <span><%= mobo.name %><br>$<%= mobo.price %></span>
+                        <button onclick="addToBuild('<%= mobo.name %>', '<%= mobo.price %>')">+</button>
+                    </li>
+                <% }); %>
+            </ul>
+        </section>
+    </div>
+</div>
+
+<script>
+    function addToBuild(motherboardName, motherboardPrice) {
+        localStorage.setItem("selectedmotherboard", motherboardName);
+        localStorage.setItem("selectedmotherboardPrice", motherboardPrice);
+        window.location.href = "/your-build";
+    }
+
+    function filterMobo() {
+        const socketFilters = Array.from(document.querySelectorAll('.socket-filter:checked')).map(cb => cb.value);
+        const nameFilters = Array.from(document.querySelectorAll('.name-filter:checked')).map(cb => cb.value);
+
+        const moboItems = document.querySelectorAll('.mobo-item');
+
+        moboItems.forEach(item => {
+            const socket = item.dataset.socket;
+            const name = item.dataset.name;
+
+            const socketMatch = socketFilters.length === 0 || socketFilters.includes(socket);
+            const nameMatch = nameFilters.length === 0 || nameFilters.includes(name);
+
+            if (socketMatch && nameMatch) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+</script>
+
 </body>
 </html>

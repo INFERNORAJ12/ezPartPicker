@@ -6,7 +6,7 @@
     <title>Your Build</title>
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        ol {
+        ol, ul {
             list-style: none;
             padding: 0;
         }
@@ -16,7 +16,7 @@
             align-items: center;
             padding: 8px 0;
             border-bottom: 1px solid #ccc;
-        }
+        }   
         button {
             background-color: #4d79c9;
             color: white;
@@ -27,6 +27,33 @@
         }
         button:hover {
             background-color: #d19c4c;
+        }
+        .filters {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        label {
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 25%;
+            padding: 15px;
+            border-right: 1px solid #ccc;
+        }
+        .main-content {
+            width: 75%;
+            padding: 15px;
+        }
+        h3 {
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -53,6 +80,17 @@
             <% } %>
         </nav>
     </header>
+    <div class="container">
+        <div class="sidebar">
+            <h3>Filter by Wattage</h3>
+            <div class="filters">
+                <label><input type="checkbox" class="socket-filter" value="650" onclick="filterPSU()"> 650 Watts</label><br>
+                <label><input type="checkbox" class="socket-filter" value="750" onclick="filterPSU()"> 750 Watts</label><br>
+                <label><input type="checkbox" class="socket-filter" value="850" onclick="filterPSU()"> 850 Watts</label><br>
+                <label><input type="checkbox" class="socket-filter" value="1000" onclick="filterPSU()"> 1000 Watts</label><br>
+            </div>
+        </div>
+        <main class="main-content">
     <section>
         <h2>List of Available Power Supply</h2>
         <p>Select Power Supply and build your PC.</p>
@@ -64,13 +102,34 @@
                 </li>
             <% }); %>
         </ol>
-    </section>
+    </section></div>
     <script>
         function addToBuild(psuName, psuPrice) {
             localStorage.setItem("selectedPsu", psuName);
             localStorage.setItem("selectedpsuPrice", psuPrice);
             window.location.href = "/your-build";
         }
+
+        function filterPSU() {
+    const selectedWattages = Array.from(document.querySelectorAll('.socket-filter:checked'))
+        .map(checkbox => checkbox.value);
+
+    const items = document.querySelectorAll('ol li');
+
+    items.forEach(item => {
+        // Extract the wattage value from the item's text content
+        const wattageMatch = item.textContent.match(/(\d{3,4})/); 
+        const wattageValue = wattageMatch ? wattageMatch[1] : null;
+
+        if (selectedWattages.length === 0 || (wattageValue && selectedWattages.includes(wattageValue))) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+
     </script>
 </body>
 </html>

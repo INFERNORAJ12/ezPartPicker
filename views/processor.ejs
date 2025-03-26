@@ -6,7 +6,7 @@
     <title>Your Build</title>
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        ol {
+        ol, ul {
             list-style: none;
             padding: 0;
         }
@@ -27,6 +27,33 @@
         }
         button:hover {
             background-color: #d19c4c;
+        }
+        .filters {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        label {
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 25%;
+            padding: 15px;
+            border-right: 1px solid #ccc;
+        }
+        .main-content {
+            width: 75%;
+            padding: 15px;
+        }
+        h3 {
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -53,23 +80,54 @@
             <% } %>
         </nav>
     </header>
-    <section>
-        <h2>List of Available Processors</h2>
-        <p>Select Processors and build your PC :</p>
-        <ol>
-            <% cpus.sort((a, b) => a.name.localeCompare(b.name)).forEach(cpu => { %>
-                <li>
-                    <span><%= cpu.name %><br>$<%= cpu.price %></span>
-                    <button onclick="addToBuild('<%= cpu.name %>','<%= cpu.price %>')">+</button>
-                </li>
-            <% }); %>
-        </ol>
-    </section>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3>Filter by Socket</h3>
+            <div class="filters">
+                <label><input type="checkbox" class="socket-filter" value="AM4" onclick="filterCPU()"> AM4</label><br>
+                <label><input type="checkbox" class="socket-filter" value="AM5" onclick="filterCPU()"> AM5</label><br>
+                <label><input type="checkbox" class="socket-filter" value="LGA 1700" onclick="filterCPU()"> LGA1700</label><br>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <section>
+                <h2>List of Available Processors</h2>
+                <p>Select Processors and build your PC :</p>
+                <ol id="cpu-list">
+                    <% cpus.sort((a, b) => a.name.localeCompare(b.name)).forEach(cpu => { %>
+                        <li class="cpu-item" data-socket="<%= cpu.socket %>">
+                            <span><%= cpu.name %> (<%= cpu.socket %>)<br>$<%= cpu.price %></span>
+                            <button onclick="addToBuild('<%= cpu.name %>','<%= cpu.price %>')">+</button>
+                        </li>
+                    <% }); %>
+                </ol>
+            </section>
+        </main>
+    </div>
+
     <script>
         function addToBuild(cpuName, cpuPrice) {
             localStorage.setItem("selectedcpu", cpuName);
             localStorage.setItem("selectedcpuPrice", cpuPrice);
             window.location.href = "/your-build";
+        }
+
+        function filterCPU() {
+            const checkedSockets = Array.from(document.querySelectorAll('.socket-filter:checked'))
+                .map(cb => cb.value);
+
+            const cpus = document.querySelectorAll('.cpu-item');
+
+            cpus.forEach(cpu => {
+                const socket = cpu.getAttribute('data-socket');
+                if (checkedSockets.length === 0 || checkedSockets.includes(socket)) {
+                    cpu.style.display = 'flex';
+                } else {
+                    cpu.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>

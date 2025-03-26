@@ -6,7 +6,7 @@
     <title>Your Build</title>
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        ol, ul {
+       ol, ul {
             list-style: none;
             padding: 0;
         }
@@ -27,6 +27,33 @@
         }
         button:hover {
             background-color: #d19c4c;
+        }
+        .filters {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        label {
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 25%;
+            padding: 15px;
+            border-right: 1px solid #ccc;
+        }
+        .main-content {
+            width: 75%;
+            padding: 15px;
+        }
+        h3 {
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -53,23 +80,67 @@
             <% } %>
         </nav>
     </header>
-    <section>
-        <h2>List of Available Coolers</h2>
-        <p>Select Coolers and build your PC :</p>
-        <ul>
-            <% coolers.sort((a, b) => a.name.localeCompare(b.name)).forEach(cooler => { %>
-                <li>
-                    <span><%= cooler.name %><br>$<%= cooler.price %></span>
-                    <button onclick="addToBuild('<%= cooler.name %>','<%= cooler.price %>')">+</button>
-                </li>
-            <% }); %>
-        </ul>
-    </section>
+
+    <div class="container">
+        <!-- Sidebar with Filters -->
+        <div class="sidebar">
+            <h3>Filter by Brand</h3>
+            <div class="filters">
+                <% 
+                    let brands = [...new Set(coolers.map(c => c.name.split(' ')[0]))]; 
+                    brands.sort().forEach(brand => { 
+                %>
+                    <label>
+                        <input type="checkbox" class="brand-filter" value="<%= brand %>" onchange="filterCooler()"> <%= brand %>
+                    </label>
+                <% }); %>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <section>
+                <h2>List of Available Coolers</h2>
+                <p>Select Coolers and build your PC :</p>
+                <ul id="cooler-list">
+                    <% coolers.sort((a, b) => a.name.localeCompare(b.name)).forEach(cooler => { %>
+                        <li class="cooler-item" data-brand="<%= cooler.name.split(' ')[0] %>">
+                            <span><%= cooler.name %><br>$<%= cooler.price %></span>
+                            <button onclick="addToBuild('<%= cooler.name %>','<%= cooler.price %>')">+</button>
+                        </li>
+                    <% }); %>
+                </ul>
+            </section>
+        </div>
+    </div>
+
     <script>
         function addToBuild(coolerName, coolerPrice) {
             localStorage.setItem("selectedcooler", coolerName);
             localStorage.setItem("selectedcoolerPrice", coolerPrice);
             window.location.href = "/your-build";
+        }
+
+        function filterCooler() {
+            const checkboxes = document.querySelectorAll('.brand-filter');
+            const selectedBrands = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+
+            const coolerItems = document.querySelectorAll('.cooler-item');
+
+            if (selectedBrands.length === 0) {
+                // Show all items if no filter is selected
+                coolerItems.forEach(item => item.classList.remove('hidden'));
+            } else {
+                coolerItems.forEach(item => {
+                    const brand = item.getAttribute('data-brand');
+                    if (selectedBrands.includes(brand)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            }
         }
     </script>
 </body>
