@@ -1,3 +1,4 @@
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -5,28 +6,38 @@
     font-family: 'Poppins', Arial, sans-serif;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     line-height: 1.6;
-    background-color: #c6e9f9; /* Light neutral background */
-    color: #333; /* Dark text for readability */
+    background-color: #c6e9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
 }
 
 /* Header */
 header {
-    background-color: #3d43f7; /* Dark background */
-    color: #fff; /* White text for contrast */
+    background-color: #3d43f7;
+    color: #fff;
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #e0e0e0; /* Subtle light border */
+    border-bottom: 2px solid #e0e0e0;
 }
 
 header h1 {
     font-size: 2rem;
     font-weight: bold;
     letter-spacing: 1px;
-    color: #ffffff; /* Accent orange color */
+    color: #ffffff;
 }
 
 header nav {
@@ -44,7 +55,7 @@ header nav a {
 }
 
 header nav a:hover {
-    color: #ff9800; /* Hover effect in accent color */
+    color: #ff9800;
     transform: scale(1.1);
 }
 
@@ -59,7 +70,7 @@ header nav a:hover {
     background-color: white;
     min-width: 160px;
     border-radius: 8px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     z-index: 1;
     overflow: hidden;
 }
@@ -75,11 +86,38 @@ header nav a:hover {
 
 .dropdown-content a:hover {
     background-color: #f5f5f5;
-    color: #ff9800; /* Accent color */
+    color: #ff9800;
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+/* Input and Dollar Styling */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.dollar-left {
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.input-wrapper input[type="number"] {
+    padding: 0.8rem 1rem;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
 }
 
 /* Form Section */
@@ -93,38 +131,15 @@ section {
 }
 
 section h2 {
-    color: #2196f3; /* Primary blue */
+    color: #2196f3;
     text-align: center;
     font-weight: bold;
     font-size: 2rem;
     margin-bottom: 2rem;
 }
 
-label {
-    font-weight: bold;
-    color: #333;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-input[type="number"] {
-    width: 100%;
-    padding: 0.8rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-input[type="number"]:focus {
-    border-color: #2196f3; /* Focus color */
-    outline: none;
-}
-
 input[type="submit"] {
-    background-color: #3d43f7; /* Dark background */
+    background-color: #3d43f7;
     color: white;
     padding: 0.8rem 2rem;
     font-size: 1.2rem;
@@ -135,11 +150,11 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #2196f3; /* Lighter blue on hover */
+    background-color: #2196f3;
     transform: scale(1.05);
 }
 
-/* PC Parts List */
+/* PC Parts Section */
 .nishantkiden {
     max-width: 1200px;
     margin: 2rem auto;
@@ -160,7 +175,7 @@ input[type="submit"]:hover {
 }
 
 .nishantkiden strong {
-    color: #2196f3; /* Highlight part name in blue */
+    color: #2196f3;
 }
 
 .nishantkiden p {
@@ -169,7 +184,16 @@ input[type="submit"]:hover {
     font-size: 1.2rem;
 }
 
-/* Responsive Design */
+/* Footer */
+footer {
+    background-color: #3d43f7;
+    color: #fff;
+    padding: 1rem 2rem;
+    text-align: center;
+    border-top: 2px solid #e0e0e0;
+}
+
+/* Responsive */
 @media screen and (max-width: 768px) {
     header {
         flex-direction: column;
@@ -188,5 +212,9 @@ input[type="submit"]:hover {
 
     input[type="submit"] {
         width: 100%;
+    }
+
+    .dollar-left {
+        left: -16px;
     }
 }
