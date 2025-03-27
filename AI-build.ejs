@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-build</title>
+  <link rel="stylesheet" href="../css/AI-build.css" />
+</head>
+<body>
+  <div class="content">
+    <!-- Header -->
+    <header>
+      <a href="/" style="text-decoration: none;"><h1>EZPcPicker</h1></a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="mailto:Infernoraj12@gmail.com">Contact</a>
+        <div class="dropdown">
+          <a>Build</a>
+          <div class="dropdown-content">
+            <a href="/your-build">Your Builds</a>
+            <a href="/AI-build">A.I Generated Rig</a>
+            <a href="/Component">Components</a>
+            <a href="/guide">Guide</a>
+          </div>
+        </div>
+        <% if (!user) { %>
+          <a href="/login">Login</a>
+          <a href="/signin">Sign Up</a>
+        <% } else { %>
+          <a href="/logout">Logout (<%= JSON.parse(user).name %>)</a>
+        <% } %>
+      </nav>
+    </header>
+
+    <!-- Form Section -->
+    <section>
+      <form action="/AI-build" method="get">
+        <h2>A.I Generated Rig</h2>
+        <div class="input-wrapper">
+          <span class="dollar-left">$</span>
+          <input type="number" id="amount" name="amount" placeholder="Enter amount" required />
+        </div>
+        <input type="submit" value="Submit" id="submit" class="btn" />
+      </form>
+    </section>
+
+    <!-- PC Parts Output -->
+    <div class="nishantkiden">
+      <% if (pcParts && Array.isArray(pcParts)) { %>
+        <ul>
+          <% pcParts.forEach(part => { %>
+            <li><strong><%= part.part %><br></strong> <%= part.name %>: $<%= part.price %></li><br />
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>No PC parts available or invalid data.</p>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; Disclaimer: The PC builds suggested by this AI are not guaranteed to be 100% accurate. Please verify part compatibility and specifications before making a purchase.</p>
+  </footer>
+</body>
+</html>
